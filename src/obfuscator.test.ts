@@ -105,5 +105,61 @@ describe('obfuscator', () => {
       // Assert
       expect(obfuscated).toBe(false);
     });
+
+    it('obfuscates an positive float number', () => {
+      // Arrange
+      const obfuscator = new Obfuscator();
+      const data = 3.141592653589793;
+
+      // Act
+      const obfuscated = obfuscator.obfuscate(data);
+
+      // Assert
+      expect(obfuscated).not.toBe(data);
+      expect(obfuscated).toBeGreaterThanOrEqual(0);
+      expect(obfuscated).toBeLessThan(10);
+    });
+
+    it('obfuscates an negative float number', () => {
+      // Arrange
+      const obfuscator = new Obfuscator();
+      const data = -3.141592653589793;
+
+      // Act
+      const obfuscated = obfuscator.obfuscate(data);
+
+      // Assert
+      expect(obfuscated).not.toBe(data);
+      expect(obfuscated).toBeLessThanOrEqual(0);
+      expect(obfuscated).toBeGreaterThan(-10);
+    });
+
+    it('obfuscates an positive integer number', () => {
+      // Arrange
+      const obfuscator = new Obfuscator();
+      const data = 1234;
+
+      // Act
+      const obfuscated = obfuscator.obfuscate(data);
+
+      // Assert
+      expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
+      expect(obfuscated).toBeGreaterThanOrEqual(1000);
+      expect(obfuscated).toBeLessThanOrEqual(9999);
+    });
+
+    it('obfuscates an negative integer number', () => {
+      // Arrange
+      const obfuscator = new Obfuscator();
+      const data = -1234;
+
+      // Act
+      const obfuscated = obfuscator.obfuscate(data);
+
+      // Assert
+      expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
+      expect(obfuscated).toBeLessThanOrEqual(-1000);
+      expect(obfuscated).toBeGreaterThanOrEqual(-9999);
+    });
   });
 });

@@ -1,3 +1,4 @@
+import obfuscateNumber from './primitives/obfuscate-number';
 import obfuscateString from './primitives/obfuscate-string';
 
 export default class Obfuscator {
@@ -7,7 +8,7 @@ export default class Obfuscator {
     //
   }
 
-  public obfuscate<T extends string | number | boolean | null>(data: T): T {
+  public obfuscate<T extends string | number | boolean | null | object>(data: T): T {
     if (data === null) {
       return null as T;
     }
@@ -20,7 +21,9 @@ export default class Obfuscator {
       return this.obfuscateString(data) as T;
     }
 
-    // TODO: number
+    if (typeof data === 'number') {
+      return this.obfuscateNumber(data) as T;
+    }
 
     // TODO: object
     // TODO: array
@@ -34,6 +37,18 @@ export default class Obfuscator {
     }
 
     const result = obfuscateString(data);
+
+    this.clues.set(data, result);
+
+    return result;
+  }
+
+  private obfuscateNumber(data: number): number {
+    if (this.clues.has(data)) {
+      return this.clues.get(data) as number;
+    }
+
+    const result = obfuscateNumber(data);
 
     this.clues.set(data, result);
 
