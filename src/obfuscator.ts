@@ -8,7 +8,9 @@ export default class Obfuscator {
     //
   }
 
-  public obfuscate<T extends string | number | boolean | null | object>(data: T): T {
+  public obfuscate<T extends string | number | boolean | null | object>(
+    data: T
+  ): T {
     if (data === null) {
       return null as T;
     }

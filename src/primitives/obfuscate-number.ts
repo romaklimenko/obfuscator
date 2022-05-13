@@ -6,7 +6,7 @@ export default function obfuscateNumber(data: number): number {
     return data;
   }
 
-  let stringData = data.toString();
+  const stringData = data.toString();
   let stringResult = '';
 
   for (let i = 0; i < stringData.length; i++) {
