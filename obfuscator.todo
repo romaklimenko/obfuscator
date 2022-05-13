@@ -1,22 +1,24 @@
 Obfuscator:
   ✔ Random character generation @done(22-05-13 12:51)
   Type detection:
-    ☐ string
-    ☐ number
-    ☐ integer
-    ☐ object
-    ☐ array
-    ☐ boolean
-    ☐ null
+    Primitive:
+      ✔ string @done(22-05-13 16:13)
+      ☐ number
+      ☐ boolean
+      ☐ null
+    Structured:      
+      ☐ object
+      ☐ array
   Obfuscation:
-    ☐ string
-    ☐ number
-    ☐ integer
-    ☐ object
-    ☐ array
-    ☐ boolean
-    ☐ null
-    ☐ clues
+    Primitive:
+      ✔ string @done(22-05-13 16:13)
+      ☐ number
+      ☐ boolean
+      ☐ null
+    Structured:
+      ☐ object
+      ☐ array
+    ☐ save clues
   Obfuscator:
     ☐ replacements
     ☐ global script
