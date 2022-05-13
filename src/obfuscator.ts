@@ -1,16 +1,15 @@
 import obfuscateString from './primitives/obfuscate-string';
-import { randomChar, randomDigit } from './random';
 
 export default class Obfuscator {
-  public clues: Map<any, any> = new Map();
+  public clues: Map<string | number, string | number> = new Map();
 
   constructor() {
     //
   }
 
-  public obfuscate(data: any): any {
-    if (data === null || typeof data === 'undefined') {
-      return null;
+  public obfuscate<T extends string | number | boolean | null>(data: T): T {
+    if (data === null) {
+      return null as T;
     }
 
     if (typeof data === 'boolean') {
@@ -18,25 +17,23 @@ export default class Obfuscator {
     }
 
     if (typeof data === 'string') {
-      return this.obfuscateString(data);
+      return this.obfuscateString(data) as T;
     }
-    
-    // TODO: number
-    
 
+    // TODO: number
 
     // TODO: object
     // TODO: array
 
-    return '';
+    throw new Error('Unsupported type');
   }
 
   private obfuscateString(data: string): string {
     if (this.clues.has(data)) {
-      return this.clues.get(data);
+      return this.clues.get(data) as string;
     }
 
-    let result = obfuscateString(data);
+    const result = obfuscateString(data);
 
     this.clues.set(data, result);
 

@@ -1,18 +1,19 @@
-import { randomChar, randomDigit } from './random';
+import {randomChar, randomDigit} from './random';
 
 describe('random', () => {
   describe('randomChar', () => {
     it('should return a random char', () => {
       // Arrange
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      const chars =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       const samples = Math.pow(chars.length, 2);
       const deviation = samples * 0.1;
 
       const map = new Map();
-      for (let char of chars) {
+      for (const char of chars) {
         map.set(char, 0);
       }
-      
+
       // Act
       for (let i = 0; i < chars.length * samples; i++) {
         const char = randomChar();
@@ -20,7 +21,7 @@ describe('random', () => {
       }
 
       // Assert
-      for (let key of map.keys()) {
+      for (const key of map.keys()) {
         const count = map.get(key);
         expect(count).toBeGreaterThan(samples - deviation);
         expect(count).toBeLessThan(samples + deviation);
@@ -36,10 +37,10 @@ describe('random', () => {
       const deviation = samples * 0.1;
 
       const map = new Map();
-      for (let char of chars) {
+      for (const char of chars) {
         map.set(char, 0);
       }
-      
+
       // Act
       for (let i = 0; i < chars.length * samples; i++) {
         const char = randomDigit();
@@ -47,7 +48,7 @@ describe('random', () => {
       }
 
       // Assert
-      for (let key of map.keys()) {
+      for (const key of map.keys()) {
         const count = map.get(key);
         expect(count).toBeGreaterThan(samples - deviation);
         expect(count).toBeLessThan(samples + deviation);
