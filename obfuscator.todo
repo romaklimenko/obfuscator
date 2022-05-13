@@ -3,21 +3,21 @@ Obfuscator:
   Type detection:
     Primitive:
       ✔ string @done(22-05-13 16:13)
-      ☐ number
+      ✔ number @done(22-05-13 19:23)
       ✔ boolean @done(22-05-13 16:27)
       ✔ null @done(22-05-13 16:27)
     Structured:      
       ☐ object
-      ☐ array
+      ✔ array @done(22-05-13 19:23)
   Obfuscation:
     Primitive:
       ✔ string @done(22-05-13 16:13)
-      ☐ number
+      ✔ number @done(22-05-13 19:23)
       ✔ boolean @done(22-05-13 16:27)
       ✔ null @done(22-05-13 16:27)
     Structured:
       ☐ object
-      ☐ array
+      ✔ array @done(22-05-13 19:24)
     ☐ save clues
   Obfuscator:
     ☐ replacements

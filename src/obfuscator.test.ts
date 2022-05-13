@@ -161,5 +161,23 @@ describe('obfuscator', () => {
       expect(obfuscated).toBeLessThanOrEqual(-1000);
       expect(obfuscated).toBeGreaterThanOrEqual(-9999);
     });
+
+    it('obfuscates an array', () => {
+      // Arrange
+      const obfuscator = new Obfuscator();
+      const data = [-1234, 'Hello World', true, null];
+
+      // Act
+      const obfuscated = obfuscator.obfuscate(data);
+
+      // Assert
+      expect(obfuscated.length).toBe(data.length);
+      expect(obfuscated[0]).toBeLessThanOrEqual(-1000);
+      expect(obfuscated[0]).toBeGreaterThanOrEqual(-9999);
+      expect(obfuscated[1]).not.toBe(data[1]);
+      expect((<string>obfuscated[1]).length).toBe((<string>data[1]).length);
+      expect(obfuscated[2]).toBe(data[2]);
+      expect(obfuscated[3]).toBeNull();
+    });
   });
 });

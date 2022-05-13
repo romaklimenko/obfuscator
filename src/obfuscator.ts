@@ -25,8 +25,11 @@ export default class Obfuscator {
       return this.obfuscateNumber(data) as T;
     }
 
+    if (Array.isArray(data)) {
+      return data.map(item => this.obfuscate(item)) as T;
+    }
+
     // TODO: object
-    // TODO: array
 
     throw new Error('Unsupported type');
   }
