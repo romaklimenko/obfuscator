@@ -2,7 +2,8 @@
   "name": "obfuscator",
   "version": "1.0.0",
   "description": "Obfuscates JSON data.",
-  "main": "index.js",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
   "scripts": {
     "test": "jest --watch",
     "lint": "gts lint",
@@ -13,6 +14,9 @@
     "pretest": "npm run compile",
     "posttest": "npm run lint"
   },
+  "files": [
+    "build"
+  ],
   "author": "romaklimenko@gmail.com",
   "license": "ISC",
   "bugs": {

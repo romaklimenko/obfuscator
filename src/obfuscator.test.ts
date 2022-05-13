@@ -216,8 +216,6 @@ describe('obfuscator', () => {
       // Act
       const obfuscated = obfuscator.obfuscate(data);
 
-      console.log(JSON.stringify(obfuscated, null, 2));
-
       // Assert
       expect(obfuscated.name).not.toBe(data.name);
       expect(obfuscated.name.length).toBe(data.name.length);

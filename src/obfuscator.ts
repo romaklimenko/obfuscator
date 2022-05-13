@@ -39,7 +39,6 @@ export default class Obfuscator {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           result[key] = this.obfuscate((data as any)[key]);
-          console.log('key', key);
         }
       }
       return result;
