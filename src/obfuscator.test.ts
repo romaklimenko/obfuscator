@@ -14,6 +14,8 @@ describe('obfuscator', () => {
       expect(obfuscated.length).toBe(obfuscated.length);
       expect(obfuscated[5]).toBe(' ');
       expect(obfuscated).not.toBe(data);
+      expect(obfuscator.clues.has(data)).toBe(true);
+      expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
     it('obfuscates a multiline string', () => {
@@ -28,6 +30,8 @@ describe('obfuscator', () => {
       expect(obfuscated.length).toBe(obfuscated.length);
       expect(obfuscated[5]).toBe('\n');
       expect(obfuscated).not.toBe(data);
+      expect(obfuscator.clues.has(data)).toBe(true);
+      expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
     it('obfuscates an email', () => {
@@ -43,6 +47,8 @@ describe('obfuscator', () => {
       expect(obfuscated[7]).toBe('@');
       expect(obfuscated[14]).toBe('.');
       expect(obfuscated).not.toBe(data);
+      expect(obfuscator.clues.has(data)).toBe(true);
+      expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
     xit('TODO: obfuscates a secure URL', () => {
@@ -118,6 +124,8 @@ describe('obfuscator', () => {
       expect(obfuscated).not.toBe(data);
       expect(obfuscated).toBeGreaterThanOrEqual(0);
       expect(obfuscated).toBeLessThan(10);
+      expect(obfuscator.clues.has(data)).toBe(true);
+      expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
     it('obfuscates an negative float number', () => {
@@ -132,6 +140,8 @@ describe('obfuscator', () => {
       expect(obfuscated).not.toBe(data);
       expect(obfuscated).toBeLessThanOrEqual(0);
       expect(obfuscated).toBeGreaterThan(-10);
+      expect(obfuscator.clues.has(data)).toBe(true);
+      expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
     it('obfuscates an positive integer number', () => {
@@ -146,6 +156,8 @@ describe('obfuscator', () => {
       expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
       expect(obfuscated).toBeGreaterThanOrEqual(0);
       expect(obfuscated).toBeLessThanOrEqual(9999);
+      expect(obfuscator.clues.has(data)).toBe(true);
+      expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
     it('obfuscates an negative integer number', () => {
@@ -160,6 +172,8 @@ describe('obfuscator', () => {
       expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
       expect(obfuscated).toBeLessThanOrEqual(0);
       expect(obfuscated).toBeGreaterThanOrEqual(-9999);
+      expect(obfuscator.clues.has(data)).toBe(true);
+      expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
     it('obfuscates an array', () => {
@@ -178,6 +192,8 @@ describe('obfuscator', () => {
       expect((<string>obfuscated[1]).length).toBe((<string>data[1]).length);
       expect(obfuscated[2]).toBe(data[2]);
       expect(obfuscated[3]).toBeNull();
+      expect(obfuscator.clues.has(data[0] as number)).toBe(true);
+      expect(obfuscator.clues.has(data[1] as string)).toBe(true);
     });
 
     it('obfuscates an object', () => {
@@ -194,7 +210,7 @@ describe('obfuscator', () => {
           state: 'CA',
           zip: '12345',
         },
-        friends: ['John Doe', 'Mary Jane'],
+        friends: ['John Doe', 'Mary Jane', 'Joe Sixpack'],
       };
 
       // Act
@@ -210,6 +226,7 @@ describe('obfuscator', () => {
       expect(obfuscated.address.city).not.toBe(data.address.city);
       expect(obfuscated.address.city.length).toBe(data.address.city.length);
       expect(obfuscated.friends.length).toBe(data.friends.length);
+      expect(obfuscator.clues.size).toBe(9); // Joe Sixpack appears twice in data, but once in clues
     });
   });
 });
