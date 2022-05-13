@@ -31,7 +31,19 @@ export default class Obfuscator {
       return data.map(item => this.obfuscate(item)) as T;
     }
 
-    // TODO: object
+    if (typeof data === 'object') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result: any = {};
+
+      for (const key of Object.keys(data)) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          result[key] = this.obfuscate((data as any)[key]);
+          console.log('key', key);
+        }
+      }
+      return result;
+    }
 
     throw new Error('Unsupported type');
   }

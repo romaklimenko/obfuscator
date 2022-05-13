@@ -144,7 +144,7 @@ describe('obfuscator', () => {
 
       // Assert
       expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
-      expect(obfuscated).toBeGreaterThanOrEqual(1000);
+      expect(obfuscated).toBeGreaterThanOrEqual(0);
       expect(obfuscated).toBeLessThanOrEqual(9999);
     });
 
@@ -158,7 +158,7 @@ describe('obfuscator', () => {
 
       // Assert
       expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
-      expect(obfuscated).toBeLessThanOrEqual(-1000);
+      expect(obfuscated).toBeLessThanOrEqual(0);
       expect(obfuscated).toBeGreaterThanOrEqual(-9999);
     });
 
@@ -172,12 +172,44 @@ describe('obfuscator', () => {
 
       // Assert
       expect(obfuscated.length).toBe(data.length);
-      expect(obfuscated[0]).toBeLessThanOrEqual(-1000);
+      expect(obfuscated[0]).toBeLessThanOrEqual(0);
       expect(obfuscated[0]).toBeGreaterThanOrEqual(-9999);
       expect(obfuscated[1]).not.toBe(data[1]);
       expect((<string>obfuscated[1]).length).toBe((<string>data[1]).length);
       expect(obfuscated[2]).toBe(data[2]);
       expect(obfuscated[3]).toBeNull();
+    });
+
+    it('obfuscates an object', () => {
+      // Arrange
+      const obfuscator = new Obfuscator();
+      const data = {
+        name: 'Joe Sixpack',
+        email: 'joe@sixpack.com',
+        age: 42,
+        isActive: true,
+        address: {
+          street: '123 Main St',
+          city: 'Anytown',
+          state: 'CA',
+          zip: '12345',
+        },
+        friends: ['John Doe', 'Mary Jane'],
+      };
+
+      // Act
+      const obfuscated = obfuscator.obfuscate(data);
+
+      console.log(JSON.stringify(obfuscated, null, 2));
+
+      // Assert
+      expect(obfuscated.name).not.toBe(data.name);
+      expect(obfuscated.name.length).toBe(data.name.length);
+      expect(obfuscated.email).not.toBe(data.email);
+      expect(obfuscated.email.length).toBe(data.email.length);
+      expect(obfuscated.address.city).not.toBe(data.address.city);
+      expect(obfuscated.address.city.length).toBe(data.address.city.length);
+      expect(obfuscated.friends.length).toBe(data.friends.length);
     });
   });
 });
