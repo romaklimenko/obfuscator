@@ -4,8 +4,8 @@ Obfuscator:
     Primitive:
       ✔ string @done(22-05-13 16:13)
       ☐ number
-      ☐ boolean
-      ☐ null
+      ✔ boolean @done(22-05-13 16:27)
+      ✔ null @done(22-05-13 16:27)
     Structured:      
       ☐ object
       ☐ array
@@ -13,8 +13,8 @@ Obfuscator:
     Primitive:
       ✔ string @done(22-05-13 16:13)
       ☐ number
-      ☐ boolean
-      ☐ null
+      ✔ boolean @done(22-05-13 16:27)
+      ✔ null @done(22-05-13 16:27)
     Structured:
       ☐ object
       ☐ array

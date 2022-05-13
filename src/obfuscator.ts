@@ -8,13 +8,22 @@ export default class Obfuscator {
     //
   }
 
-  public obfuscate(data: any): string {
+  public obfuscate(data: any): any {
+    if (data === null || typeof data === 'undefined') {
+      return null;
+    }
+
+    if (typeof data === 'boolean') {
+      return data;
+    }
+
     if (typeof data === 'string') {
       return this.obfuscateString(data);
     }
+    
     // TODO: number
-    // TODO: boolean
-    // TODO: null
+    
+
 
     // TODO: object
     // TODO: array
