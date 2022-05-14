@@ -8,7 +8,9 @@
   },
   "types": "build/src/index.d.ts",
   "scripts": {
-    "test": "jest --watch",
+    "build": "npm run compile",
+    "watch": "jest --watch",
+    "test": "jest",
     "coverage": "jest --coverage --watch",
     "lint": "gts lint",
     "clean": "gts clean",
