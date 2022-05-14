@@ -7,7 +7,7 @@ Obfuscator:
       ✔ boolean @done(22-05-13 16:27)
       ✔ null @done(22-05-13 16:27)
     Structured:      
-      ☐ object
+      ✔ object @done(22-05-13 23:38)
       ✔ array @done(22-05-13 19:23)
   Obfuscation:
     Primitive:
@@ -16,13 +16,14 @@ Obfuscator:
       ✔ boolean @done(22-05-13 16:27)
       ✔ null @done(22-05-13 16:27)
     Structured:
-      ☐ object
+      ✔ object @done(22-05-13 23:37)
       ✔ array @done(22-05-13 19:24)
-    ☐ save clues
+    ✔ save clues @done(22-05-14 08:59)
   Obfuscator:
     ☐ replacements
-    ☐ global script
+    ✔ global script @done(22-05-14 08:59)
   Release:
     ☐ CI
     ☐ readme
     ☐ npm
+    ☐ code coverage
