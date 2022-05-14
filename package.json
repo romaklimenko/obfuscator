@@ -1,5 +1,5 @@
 {
-  "name": "obfuscator",
+  "name": "data-obfuscator",
   "version": "1.0.0",
   "description": "Obfuscates JSON data.",
   "main": "build/src/index.js",

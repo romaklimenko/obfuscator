@@ -51,7 +51,7 @@ And `departments.json` file in the same directory:
 If you haven't installed Obfuscator yet, run this command:
 
 ```shell
-npm install -g @romaklimenko/obfuscator
+npm install -g data-obfuscator
 ```
 
 And then, just `cd` to your directory with the JSON files run `obfuscate`. Obfuscator will create a file per every JSON file in the directory. So, for our example, it will make `employees.obfuscated.json`:
