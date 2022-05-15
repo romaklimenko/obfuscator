@@ -51,7 +51,7 @@ describe('obfuscator', () => {
       expect(obfuscator.clues.get(data)).toBe(obfuscated);
     });
 
-    xit('TODO: obfuscates a secure URL', () => {
+    it('obfuscates a secure URL', () => {
       // Arrange
       const obfuscator = new Obfuscator();
       const data = 'https://github.com';
@@ -61,22 +61,36 @@ describe('obfuscator', () => {
 
       // Assert
       expect(obfuscated.length).toBe(obfuscated.length);
-      // TODO:
       expect(obfuscated).not.toBe(data);
+      expect(obfuscated.startsWith('https://')).toBe(true);
     });
 
-    xit('TODO: obfuscates an insecure URL', () => {
+    it('obfuscates an insecure URL', () => {
       // Arrange
       const obfuscator = new Obfuscator();
-      const data = 'http://dr.dk/';
+      const data = 'http://github.com';
 
       // Act
       const obfuscated = obfuscator.obfuscate(data);
 
       // Assert
       expect(obfuscated.length).toBe(obfuscated.length);
-      // TODO:
       expect(obfuscated).not.toBe(data);
+      expect(obfuscated.startsWith('http://')).toBe(true);
+    });
+
+    it('obfuscates an FTP URL (case insensitive)', () => {
+      // Arrange
+      const obfuscator = new Obfuscator();
+      const data = 'fTp://github.com';
+
+      // Act
+      const obfuscated = obfuscator.obfuscate(data);
+
+      // Assert
+      expect(obfuscated.length).toBe(obfuscated.length);
+      expect(obfuscated).not.toBe(data);
+      expect(obfuscated.startsWith('ftp://')).toBe(true);
     });
 
     it('obfuscates null', () => {
