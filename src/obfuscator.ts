@@ -3,6 +3,7 @@ import obfuscateString from './primitives/obfuscate-string';
 
 export default class Obfuscator {
   public clues: Map<string | number, string | number> = new Map();
+  private values = new Set();
 
   constructor() {
     //
@@ -52,7 +53,16 @@ export default class Obfuscator {
       return this.clues.get(data) as string;
     }
 
-    const result = obfuscateString(data);
+    let result = obfuscateString(data);
+
+    while (this.values.has(result)) {
+      console.warn(
+        `Value ${result} generated for ${data} already exists. Regenerating...`
+      );
+      result = obfuscateString(data);
+    }
+
+    this.values.add(result);
 
     this.clues.set(data, result);
 
