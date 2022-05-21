@@ -39,9 +39,11 @@ export default class Obfuscator {
 
       for (const key of Object.keys(data)) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          result[key] = this.ignoredFields.has(key) ?
-            (data as any)[key] : this.obfuscate((data as any)[key]);
+          result[key] = this.ignoredFields.has(key)
+            ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              (data as any)[key]
+            : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              this.obfuscate((data as any)[key]);
         }
       }
       return result;

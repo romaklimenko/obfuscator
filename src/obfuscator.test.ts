@@ -7,10 +7,10 @@ describe('obfuscator', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 'Hello World';
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated.length).toBe(obfuscated.length);
         expect(obfuscated[5]).toBe(' ');
@@ -18,15 +18,15 @@ describe('obfuscator', () => {
         expect(obfuscator.clues.has(data)).toBe(true);
         expect(obfuscator.clues.get(data)).toBe(obfuscated);
       });
-  
+
       it('obfuscates a multiline string', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 'Hello\nWorld';
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated.length).toBe(obfuscated.length);
         expect(obfuscated[5]).toBe('\n');
@@ -34,15 +34,15 @@ describe('obfuscator', () => {
         expect(obfuscator.clues.has(data)).toBe(true);
         expect(obfuscator.clues.get(data)).toBe(obfuscated);
       });
-  
+
       it('obfuscates an email', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 'support@github.com';
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated.length).toBe(obfuscated.length);
         expect(obfuscated[7]).toBe('@');
@@ -51,43 +51,43 @@ describe('obfuscator', () => {
         expect(obfuscator.clues.has(data)).toBe(true);
         expect(obfuscator.clues.get(data)).toBe(obfuscated);
       });
-  
+
       it('obfuscates a secure URL', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 'https://github.com';
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated.length).toBe(obfuscated.length);
         expect(obfuscated).not.toBe(data);
         expect(obfuscated.startsWith('https://')).toBe(true);
       });
-  
+
       it('obfuscates an insecure URL', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 'http://github.com';
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated.length).toBe(obfuscated.length);
         expect(obfuscated).not.toBe(data);
         expect(obfuscated.startsWith('http://')).toBe(true);
       });
-  
+
       it('obfuscates an FTP URL (case insensitive)', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 'fTp://github.com';
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated.length).toBe(obfuscated.length);
         expect(obfuscated).not.toBe(data);
@@ -99,10 +99,10 @@ describe('obfuscator', () => {
       it('obfuscates null', () => {
         // Arrange
         const obfuscator = new Obfuscator();
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(null);
-  
+
         // Assert
         expect(obfuscated).toBe(null);
       });
@@ -112,21 +112,21 @@ describe('obfuscator', () => {
       it('obfuscates true', () => {
         // Arrange
         const obfuscator = new Obfuscator();
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(true);
-  
+
         // Assert
         expect(obfuscated).toBe(true);
       });
-  
+
       it('obfuscates false', () => {
         // Arrange
         const obfuscator = new Obfuscator();
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(false);
-  
+
         // Assert
         expect(obfuscated).toBe(false);
       });
@@ -137,10 +137,10 @@ describe('obfuscator', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 3.141592653589793;
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated).not.toBe(data);
         expect(obfuscated).toBeGreaterThanOrEqual(0);
@@ -148,15 +148,15 @@ describe('obfuscator', () => {
         expect(obfuscator.clues.has(data)).toBe(true);
         expect(obfuscator.clues.get(data)).toBe(obfuscated);
       });
-  
+
       it('obfuscates an negative float number', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = -3.141592653589793;
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated).not.toBe(data);
         expect(obfuscated).toBeLessThanOrEqual(0);
@@ -164,15 +164,15 @@ describe('obfuscator', () => {
         expect(obfuscator.clues.has(data)).toBe(true);
         expect(obfuscator.clues.get(data)).toBe(obfuscated);
       });
-  
+
       it('obfuscates an positive integer number', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = 1234;
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
         expect(obfuscated).toBeGreaterThanOrEqual(0);
@@ -180,15 +180,15 @@ describe('obfuscator', () => {
         expect(obfuscator.clues.has(data)).toBe(true);
         expect(obfuscator.clues.get(data)).toBe(obfuscated);
       });
-  
+
       it('obfuscates an negative integer number', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = -1234;
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated).not.toBe(data); // well, it's not 100% sure...
         expect(obfuscated).toBeLessThanOrEqual(0);
@@ -203,10 +203,10 @@ describe('obfuscator', () => {
         // Arrange
         const obfuscator = new Obfuscator();
         const data = [-1234, 'Hello World', true, null];
-  
+
         // Act
         const obfuscated = obfuscator.obfuscate(data);
-  
+
         // Assert
         expect(obfuscated.length).toBe(data.length);
         expect(obfuscated[0]).toBeLessThanOrEqual(0);
@@ -221,7 +221,6 @@ describe('obfuscator', () => {
     });
 
     describe('object', () => {
-
       it('obfuscates an object', () => {
         // Arrange
         const obfuscator = new Obfuscator();
@@ -262,7 +261,7 @@ describe('obfuscator', () => {
       obfuscator.ignoredFields.add('name');
       const data = {
         name: 'Joe Sixpack',
-        email: 'joe@sixpack.com'
+        email: 'joe@sixpack.com',
       };
 
       // Act
